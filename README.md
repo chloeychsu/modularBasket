@@ -43,3 +43,47 @@ dotnet add Shared/Shared/Shared.csproj package FluentValidation.AspNetCore
 dotnet add Shared/Shared/Shared.csproj package MediatR
 
 ```
+
+# Technical Analysis
+
+```mermaid
+graph LR
+  a1[Shared]-->a2[Modules]-->a3[API]
+```
+```mermaid
+graph LR
+    b1(Domain)-->b2(Infrastructure)-->b3(Application)-->b4(Presentation)
+```
+```mermaid
+graph LR
+    subgraph API
+    a1[ASP.NET <br>Core <br>API]
+    end
+    subgraph Library
+    Catalog
+    Basket
+    Ordering
+    end
+    subgraph Shared
+    s[Shared]
+    end
+    API-->Library-->Shared
+    
+
+```
+
+## Shared Library
+
+* Domain Drive Design DDD
+
+```cs
+// Entity
+dotnet new interface -n IEntity -o Shared/Shared/DDD
+dotnet new class -n Entity -o Shared/Shared/DDD
+// Domain Event
+dotnet new interface -n IDomainEvent -o Shared/Shared/DDD
+// Aggregate
+dotnet new interface -n IAggregate -o Shared/Shared/DDD
+dotnet new class -n Aggregate -o Shared/Shared/DDD
+
+```
