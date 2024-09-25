@@ -398,5 +398,3 @@ FodyWeavers.xsd
 *.sln.iml
 
 .vscode
-
-src/Modules/Catalog/Catalog/Products
