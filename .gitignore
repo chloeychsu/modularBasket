@@ -397,6 +397,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+.vscode
 
-src/Shared/Shared/DDD
 src/Modules/Catalog/Catalog/Products
