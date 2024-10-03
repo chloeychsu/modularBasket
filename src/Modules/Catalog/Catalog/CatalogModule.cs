@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shared;
 
 
 namespace Catalog;
@@ -12,14 +14,18 @@ public static class CatalogModule
         // Add services to the container
         // API Endpoint services
         // Application use case services
+
         // Infrastructure services
-        services.AddDbContext<CatalogDbContext>(option =>
+        services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
+        services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+
+        services.AddDbContext<CatalogDbContext>((sp, option) =>
             {
-                // option.AddInterceptors(new AuditableEntityInterceptor());
+                option.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
                 option.UseNpgsql(configuration.GetConnectionString("Database"));
             }
          );
-        // services.AddScoped<IDataSeeder, CatalogDataSeeder>();
+        services.AddScoped<IDataSeeder, CatalogDataSeeder>();
         return services;
     }
     public static IApplicationBuilder UseCatalogModule(this IApplicationBuilder app)
