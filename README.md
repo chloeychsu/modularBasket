@@ -41,6 +41,13 @@ dotnet add Shared/Shared/Shared.csproj package Microsoft.Extensions.DependencyIn
 dotnet add Shared/Shared/Shared.csproj package Microsoft.Extensions.Configuration.Abstractions
 dotnet add Shared/Shared/Shared.csproj package FluentValidation.AspNetCore
 dotnet add Shared/Shared/Shared.csproj package MediatR
+dotnet add Shared/Shared/Shared.csproj package Microsoft.EntityFrameworkCore
+dotnet add Shared/Shared/Shared.csproj package Microsoft.EntityFrameworkCore.Design
+dotnet add Shared/Shared/Shared.csproj package Npgsql.EntityFrameworkCore.PostgreSQL
+
+// API package
+dotnet add Bootstrapper/API/API.csproj package Microsoft.EntityFrameworkCore.Design
+
 
 ```
 
@@ -87,3 +94,42 @@ dotnet new interface -n IAggregate -o Shared/Shared/DDD
 dotnet new class -n Aggregate -o Shared/Shared/DDD
 
 ```
+
+## Catalog Module
+
+* Application Architecture = Vertical Slice Archiecture
+* Patterns & Principles
+    1. CQRS Pattern
+    2. Mediator Pattern
+    3. DI
+    4. Minimal APIs and Routing in ASP.NET 8
+    5. ORM Pattern
+* Libraries Nuget Packages
+    1. MediatR for CQRS
+    2. Carter for API Endpoints
+    3. EF Core for PostgreSQL
+    3. Mapster for Object Mapping
+    4. FluentValidation for Input Validation
+* Project Folder Structure
+    ```cs
+    dotnet new class -n GlobalUsings -o Modules/Caftalog/Catalog
+
+    // Product
+    dotnet new class -n Product -o Modules/Catalog/Catalog/Products/Models
+    dotnet new class -n ProductCreatedEvent -o Modules/Catalog/Catalog/Products/Events
+    dotnet new record -n ProductChangedEvent -o Modules/Catalog/Catalog/Products/Events
+    //Data
+    dotnet new class -n CatalogDbContext -o Modules/Catalog/Catalog/Data
+    dotnet new class -n ProductConfiguration -o Modules/Catalog/Catalog/Data/Configurations
+
+    // EF
+    dotnet ef migrations add InitialCreate
+    dotnet ef database update
+    ```
+# Database
+```cs
+dotnet ef migrations add InitialCreate -o Data/Migrations -p Modules/Catalog/Catalog -s Bootstrapper/API
+dotnet ef database update -p Modules/Catalog/Catalog -s Bootstrapper/API
+
+```
+ 
