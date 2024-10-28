@@ -95,6 +95,7 @@ dotnet new class -n Aggregate -o Shared/Shared/DDD
 
 ```
 
+---
 ## Catalog Module
 
 * Application Architecture = Vertical Slice Archiecture
@@ -126,6 +127,8 @@ dotnet new class -n Aggregate -o Shared/Shared/DDD
     dotnet ef migrations add InitialCreate
     dotnet ef database update
     ```
+
+
 # Database
 ```cs
 dotnet ef migrations add InitialCreate -o Data/Migrations -p Modules/Catalog/Catalog -s Bootstrapper/API
@@ -133,3 +136,100 @@ dotnet ef database update -p Modules/Catalog/Catalog -s Bootstrapper/API
 
 ```
  
+
+# Class 
+
+## Domain-Driven Desing
+
+```mermaid
+---
+title: Domain-Driven Desing(領域驅動設計)
+---
+classDiagram
+
+class IEntity{
+    <<interface>>
+    + CreateAt : DateTime
+    + CreateBy : string
+    + LastModified : DateTime
+    + LastModifiedBy : string
+}
+
+
+class IEntity2["IEntity< T>"]{
+    <<interface>>
+    + Id : T
+}
+class Entity~T~{
+    + Id : T
+    + CreateAt : DateTime
+    + CreateBy : string
+    + LastModified : DateTime
+    + LastModifiedBy : string
+
+}
+
+class IDomainEvent{
+    <<interface>>
+    + EventId : Guid
+    + OccurredOn : DateTime
+    + EventType : string
+}
+class IAggregate{
+    <<interface>>
+    + DomainEvents : IDomainEvent
+    + ClearDomainEvents() IDomainEvent[]
+}
+class IAggregate2["IAggregate< T>"]{
+    <<interface>>
+    + DomainEvents : IDomainEvent
+    + ClearDomainEvents() IDomainEvent[]
+}
+
+class Aggregate~T~{
+    - _domainEvents() List~IDomainEvent~
+    -DomainEvents() IReadOnlyList~IDomainEvent~
+    +AddDomainEvent(IDomainEvent domainEvent) void
+    +ClearDomainEvents() IDomainEvent[]
+}
+
+IEntity<|--IEntity2 : Inheritance
+IEntity2<|--Entity~T~ : Inheritance
+IDomainEvent*--IAggregate2 : Composition
+IAggregate<|--IAggregate2 : Inheritance
+Entity~T~<|--Aggregate~T~
+IAggregate2<|--Aggregate~T~
+
+
+namespace Catalog{
+    class Product{
+        + Name:string
+        + Category:List~string~
+        + Description:string
+        + ImageFile:string
+        + Price:decimal
+        +Create() Product
+        +Update() void
+    }
+    class ProductCreatedEvent{
+    
+    }
+    class ProductChangedEvent{
+    
+    }
+}
+
+
+Aggregate<|--Product : Inheritance
+IDomainEvent<|--ProductCreatedEvent: Inheritance
+IDomainEvent<|--ProductChangedEvent: Inheritance
+Product*--ProductCreatedEvent : Composition
+Product*--ProductChangedEvent : Composition
+```
+
+
+## CQRS Command Query Responsibility Segregation (MediatR)
+
+[MediatR LifeCycle](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*JR5ta7GSLawEWZSWoW5FHw.png)
+
+
