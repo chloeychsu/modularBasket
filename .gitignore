@@ -398,4 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 
 .vscode
+*.DS_Store
 Migrations

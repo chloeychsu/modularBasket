@@ -44,6 +44,7 @@ dotnet add Shared/Shared/Shared.csproj package MediatR
 dotnet add Shared/Shared/Shared.csproj package Microsoft.EntityFrameworkCore
 dotnet add Shared/Shared/Shared.csproj package Microsoft.EntityFrameworkCore.Design
 dotnet add Shared/Shared/Shared.csproj package Npgsql.EntityFrameworkCore.PostgreSQL
+dotnet add Shared/Shared/Shared.csproj package Mapster
 
 // API package
 dotnet add Bootstrapper/API/API.csproj package Microsoft.EntityFrameworkCore.Design
@@ -166,7 +167,7 @@ class Entity~T~{
     + CreateBy : string
     + LastModified : DateTime
     + LastModifiedBy : string
-
+* 
 }
 
 class IDomainEvent{
@@ -230,6 +231,6 @@ Product*--ProductChangedEvent : Composition
 
 ## CQRS Command Query Responsibility Segregation (MediatR)
 
-[MediatR LifeCycle](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*JR5ta7GSLawEWZSWoW5FHw.png)
+![MediatR LifeCycle](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*JR5ta7GSLawEWZSWoW5FHw.png)
 
 
