@@ -1,7 +1,24 @@
 ﻿namespace Catalog.Products.Features.CreateProduct;
 
-public record CreateProductCommand();
-public class CreateProductHandler
+public record CreateProductCommand(ProductDto Product) : ICommand<CreateProductResult>;
+public record CreateProductResult(Guid Id);
+internal class CreateProductHandler(CatalogDbContext dbContext)
+    : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
+    public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
+    {  
+        var productDto = command.Product;
+        var product = Product.Create(Guid.NewGuid(),
+            productDto.Name,
+            productDto.Category,
+            productDto.Description,
+            productDto.ImageFile,
+            productDto.Price
+        );
 
+        dbContext.Products.Add(product);
+        await dbContext.SaveChangesAsync(cancellationToken);
+
+        return new CreateProductResult(product.Id);
+    }
 }
