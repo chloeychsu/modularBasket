@@ -14,6 +14,9 @@ public static class CatalogModule
         // Add services to the container
         // API Endpoint services
         // Application use case services
+        services.AddMediatR(config=>{
+            config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+        });
 
         // Infrastructure services
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
