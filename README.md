@@ -46,6 +46,7 @@ dotnet add Shared/Shared/Shared.csproj package Microsoft.EntityFrameworkCore.Des
 dotnet add Shared/Shared/Shared.csproj package Npgsql.EntityFrameworkCore.PostgreSQL
 dotnet add Shared/Shared/Shared.csproj package Mapster
 dotnet add Shared/Shared/Shared.csproj package Carter
+dotnet add Shared/Shared/Shared.csproj package FluentValidation.DependencyInjectionExtensions
 
 // API package
 dotnet add Bootstrapper/API/API.csproj package Microsoft.EntityFrameworkCore.Design

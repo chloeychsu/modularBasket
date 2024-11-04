@@ -1,8 +1,4 @@
-﻿
-using Catalog.Products.Dtos;
-using Shared.CQRS;
-
-namespace Catalog.Products.Features.GetProductById;
+﻿namespace Catalog.Products.Features.GetProductById;
 
 public record GetProductByIdQuery(Guid Id) : IQuery<GetProductByIdReturn>;
 
@@ -14,10 +10,10 @@ public class GetProductByIdHandler(CatalogDbContext dbContext) : IQueryHandler<G
     {
         var product = await dbContext.Products.AsNoTracking()
                         .SingleOrDefaultAsync(p => p.Id == query.Id, cancellationToken);
+
         if (product is null)
-        {
-            throw new Exception($"Product not found: {query.Id}");
-        }
+            throw new ProductNotFoundException(query.Id);
+
         var productDto = product.Adapt<ProductDto>();
         return new GetProductByIdReturn(productDto);
     }
