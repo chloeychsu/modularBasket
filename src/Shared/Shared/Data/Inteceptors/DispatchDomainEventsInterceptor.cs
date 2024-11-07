@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Shared.DDD;
 
-namespace Shared;
+namespace Shared.Data.Inteceptors;
 
 public class DispatchDomainEventsInterceptor(IMediator mediator) : SaveChangesInterceptor
 {
