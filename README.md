@@ -48,6 +48,9 @@ dotnet add Shared/Shared/Shared.csproj package Mapster
 dotnet add Shared/Shared/Shared.csproj package Carter
 dotnet add Shared/Shared/Shared.csproj package FluentValidation.DependencyInjectionExtensions
 
+dotnet add Bootstrapper/API/API.csproj package Serilog.AspNetCore
+`dotnet add Bootstrapper/API/API.csproj package Serilog.Sinks.Seq`
+
 // API package
 dotnet add Bootstrapper/API/API.csproj package Microsoft.EntityFrameworkCore.Design
 
