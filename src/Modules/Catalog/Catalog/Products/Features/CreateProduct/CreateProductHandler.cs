@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace Catalog.Products.Features.CreateProduct;
+﻿namespace Catalog.Products.Features.CreateProduct;
 
 public record CreateProductCommand(ProductDto Product) : ICommand<CreateProductResult>;
 public record CreateProductResult(Guid Id);
@@ -14,16 +12,11 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
         RuleFor(x => x.Product.Price).GreaterThan(0).WithMessage("Price must be greter then 0");
     }
 }
-internal class CreateProductHandler(CatalogDbContext dbContext, ILogger<CreateProductHandler> logger)
+internal class CreateProductHandler(CatalogDbContext dbContext)
     : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
-    {
-        // validation
-        
-        // logging
-        logger.LogInformation("CreateProductCommandHandler.Handler called with {@Command}", command); 
-        
+    {        
         // logic
         var productDto = command.Product;
         var product = Product.Create(Guid.NewGuid(),

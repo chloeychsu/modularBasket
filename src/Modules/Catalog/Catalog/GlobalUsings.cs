@@ -18,4 +18,4 @@ global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Routing;
 global using Catalog.Products.Exceptions;
 global using FluentValidation;
-
+global using Shared.Pagination;
