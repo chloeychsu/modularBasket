@@ -1,10 +1,8 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Shared;
 using Shared.Behaviors;
+using Shared.Data.Inteceptors;
 
 
 namespace Catalog;
@@ -23,7 +21,7 @@ public static class CatalogModule
         });
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-        // Infrastructure services
+        // 3. Data - Infrastructure services
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 

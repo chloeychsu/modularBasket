@@ -49,7 +49,7 @@ dotnet add Shared/Shared/Shared.csproj package Carter
 dotnet add Shared/Shared/Shared.csproj package FluentValidation.DependencyInjectionExtensions
 
 dotnet add Bootstrapper/API/API.csproj package Serilog.AspNetCore
-`dotnet add Bootstrapper/API/API.csproj package Serilog.Sinks.Seq`
+dotnet add Bootstrapper/API/API.csproj package Serilog.Sinks.Seq
 
 // API package
 dotnet add Bootstrapper/API/API.csproj package Microsoft.EntityFrameworkCore.Design
@@ -137,8 +137,14 @@ dotnet new class -n Aggregate -o Shared/Shared/DDD
 
 # Database
 ```cs
+// Catalog
 dotnet ef migrations add InitialCreate -o Data/Migrations -p Modules/Catalog/Catalog -s Bootstrapper/API
 dotnet ef database update -p Modules/Catalog/Catalog -s Bootstrapper/API
+
+// Basket
+dotnet ef migrations add InitialCreate --context BasketDbContext -o Data/Migrations -p Modules/Basket/Basket -s Bootstrapper/API
+dotnet ef database update --context BasketDbContext -p Modules/Basket/Basket -s Bootstrapper/API
+
 
 ```
  
