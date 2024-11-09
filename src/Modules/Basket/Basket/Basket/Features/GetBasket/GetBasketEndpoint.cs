@@ -1,7 +1,4 @@
-﻿
-using Basket.Basket.Features.GetBasket;
-
-namespace Basket;
+﻿namespace Basket;
 
 public record GetBasketResponse(ShoppingCartDto ShoppingCart);
 public class GetBasketEndpoint : ICarterModule

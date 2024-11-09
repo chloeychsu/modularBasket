@@ -2,9 +2,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((context,config)=>config.ReadFrom.Configuration(context.Configuration));
  
+var catalogAssembly = typeof(CatalogModule).Assembly;
+var basketAssembly = typeof(BasketModule).Assembly;
 
-builder.Services
-    .AddCarterWithAssemblies(typeof(CatalogModule).Assembly);
+builder.Services.AddCarterWithAssemblies(catalogAssembly,basketAssembly);
+builder.Services.AddMediatRWithAsssemblies(catalogAssembly,basketAssembly);
     
 
 builder.Services

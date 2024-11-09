@@ -147,6 +147,8 @@ dotnet ef database update --context BasketDbContext -p Modules/Basket/Basket -s 
 
 
 ```
+
+## Cache
  
 
 # Class 

@@ -12,7 +12,7 @@ public class AuditableEntityInterceptor : SaveChangesInterceptor
         UpdateEntities(eventData.Context);
         return base.SavingChanges(eventData, result);
     }
-    public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
+public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
     {
         UpdateEntities(eventData.Context);
         return base.SavingChangesAsync(eventData, result, cancellationToken);
@@ -26,12 +26,12 @@ public class AuditableEntityInterceptor : SaveChangesInterceptor
         {
             if (entry.State == EntityState.Added)
             {
-                entry.Entity.CreateBy = "mehmet";
+                entry.Entity.CreateBy = "chloe";
                 entry.Entity.CreatedAt = DateTime.UtcNow;
             }
             if (entry.State == EntityState.Added || entry.State == EntityState.Modified || entry.HasChangedOwnedEntities())
             {
-                entry.Entity.LastModifiedBy = "mehmet";
+                entry.Entity.LastModifiedBy = "chloe";
                 entry.Entity.LastModified = DateTime.UtcNow;
             }
         }
