@@ -23,6 +23,6 @@ public class LoggingBehavior<TRequest, TResponse>(ILogger<LoggingBehavior<TReque
 
           logger.LogInformation($"[END] Handled {typeof(TRequest).Name} with {typeof(TResponse).Name}");
 
-          return await next();
+          return response;
      }
 }

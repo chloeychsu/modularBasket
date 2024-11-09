@@ -12,15 +12,14 @@ public class CreateBasketCommandValidator : AbstractValidator<CreateBasketComman
     }
 }
 
-public class CreateBasketHandler(BasketDbContext dbContext) : ICommandHandler<CreateBasketCommand, CreateBasketResult>
+public class CreateBasketHandler(IBasketRepository repository) : ICommandHandler<CreateBasketCommand, CreateBasketResult>
 {
     public async Task<CreateBasketResult> Handle(CreateBasketCommand command, CancellationToken cancellationToken)
     {
         var newBasket = ShoppingCart.Create(Guid.NewGuid(), command.ShoppingCart.UserName);
         command.ShoppingCart.Items.ForEach(x => newBasket.AddItem(x.ProductId, x.Quantity, x.Color, x.Price, x.ProductName));
 
-        dbContext.ShoppingCarts.Add(newBasket);
-        await dbContext.SaveChangesAsync(cancellationToken);
+        await repository.CreateBasket(newBasket, cancellationToken);
 
         return new CreateBasketResult(newBasket.Id);
     }
