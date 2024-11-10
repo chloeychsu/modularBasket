@@ -11,10 +11,11 @@ namespace Basket;
 public static class BasketModule
 {
     public static IServiceCollection AddBasketModule(this IServiceCollection services, IConfiguration configuration)
-    {
+    { 
         // 1. Api Endpoint services
         // 2. Application Use Case services
         services.AddScoped<IBasketRepository, BasketRepository>();
+        services.Decorate<IBasketRepository,CachedBasketRepository>();
         // 3. Data - Infrastructure services
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
@@ -23,7 +24,7 @@ public static class BasketModule
             {
                 option.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
                 option.UseNpgsql(configuration.GetConnectionString("Database"));
-            }
+             }
         );
 
         return services;

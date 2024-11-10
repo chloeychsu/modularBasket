@@ -12,6 +12,13 @@ services:
       - "5432:5432"
     volumes:
       - postgres_basketdb:/var/lib/postgresql/data/
+  
+  distributedcache:
+    container_name: distributedcache
+    restart: always
+    ports:
+      - "6379:6379"
+
   seq:
     container_name: seq
     environment:

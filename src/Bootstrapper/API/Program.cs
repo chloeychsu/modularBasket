@@ -7,7 +7,10 @@ var basketAssembly = typeof(BasketModule).Assembly;
 
 builder.Services.AddCarterWithAssemblies(catalogAssembly,basketAssembly);
 builder.Services.AddMediatRWithAsssemblies(catalogAssembly,basketAssembly);
-    
+
+builder.Services.AddStackExchangeRedisCache(opt=>{
+    opt.Configuration = builder.Configuration.GetConnectionString("Redis");
+});  
 
 builder.Services
     .AddCatalogModule(builder.Configuration)

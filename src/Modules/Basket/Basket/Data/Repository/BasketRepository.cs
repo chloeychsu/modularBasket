@@ -28,7 +28,7 @@ public class BasketRepository(BasketDbContext dbContext) : IBasketRepository
         return basket??throw new BasketNotFoundException(userName);
     }
 
-    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public async Task<int> SaveChangesAsync(string? userName = null,CancellationToken cancellationToken = default)
     {
         return await dbContext.SaveChangesAsync(cancellationToken);        
     }
