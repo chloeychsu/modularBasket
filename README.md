@@ -13,6 +13,8 @@ dotnet new classlib -n Catalog -o src/Modules/Catalog/Catalog
 dotnet new classlib -n Basket -o src/Modules/Basket/Basket
 dotnet new classlib -n Ordering -o src/Modules/Ordering/Ordering
 dotnet new classlib -n Shared -o src/Shared/Shared
+dotnet new classlib -n Catalog.Contracts -o src/Modules/Catalog/Catalog.Contracts
+dotnet new classlib -n Shared.Contracts -o src/Shared/Shared.Contracts
 
 dotnet new sln -n modulear-basket -o src
 cd src
@@ -27,8 +29,15 @@ dotnet add Bootstrapper/API/API.csproj reference Modules/Basket/Basket/Basket.cs
 dotnet add Bootstrapper/API/API.csproj reference Modules/Ordering/Ordering/Ordering.csproj
 
 dotnet add Modules/Catalog/Catalog/Catalog.csproj reference Shared/Shared/Shared.csproj
+dotnet add Modules/Catalog/Catalog/Catalog.csproj reference Modules/Catalog/Catalog.Contracts/Catalog.Contracts.csproj
 dotnet add Modules/Basket/Basket/Basket.csproj reference Shared/Shared/Shared.csproj
+dotnet add Modules/Basket/Basket/Basket.csproj reference Modules/Catalog/Catalog.Contracts/Catalog.Contracts.csproj
 dotnet add Modules/Ordering/Ordering/Ordering.csproj reference Shared/Shared/Shared.csproj
+
+dotnet add Shared/Shared/Shared.csproj reference Shared/Shared.Contracts/Shared.Contracts.csproj
+dotnet add Modules/Catalog/Catalog.Contracts/Catalog.Contracts.csproj reference Shared/Shared.Contracts/Shared.Contracts.csproj
+
+
 
 dotnet new class -n CatalogModule -o Modules/Catalog/Catalog
 dotnet new class -n BasketModule -o Modules/Basket/Basket
@@ -50,8 +59,14 @@ dotnet add Shared/Shared/Shared.csproj package FluentValidation.DependencyInject
 dotnet add Shared/Shared/Shared.csproj package Microsoft.Extensions.Caching.StackExchangeRedis
 dotnet add Shared/Shared/Shared.csproj package Scrutor // decoration pattern
 
+// API Nuget
 dotnet add Bootstrapper/API/API.csproj package Serilog.AspNetCore
 dotnet add Bootstrapper/API/API.csproj package Serilog.Sinks.Seq
+
+// Share Contracts Nuget
+dotnet remove Shared/Shared/Shared.csproj package MediatR
+dotnet add Shared/Shared.Contracts/Shared.Contracts.csproj package MediatR
+
 
 // API package
 dotnet add Bootstrapper/API/API.csproj package Microsoft.EntityFrameworkCore.Design
