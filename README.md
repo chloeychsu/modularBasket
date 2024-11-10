@@ -47,6 +47,8 @@ dotnet add Shared/Shared/Shared.csproj package Npgsql.EntityFrameworkCore.Postgr
 dotnet add Shared/Shared/Shared.csproj package Mapster
 dotnet add Shared/Shared/Shared.csproj package Carter
 dotnet add Shared/Shared/Shared.csproj package FluentValidation.DependencyInjectionExtensions
+dotnet add Shared/Shared/Shared.csproj package Microsoft.Extensions.Caching.StackExchangeRedis
+dotnet add Shared/Shared/Shared.csproj package Scrutor // decoration pattern
 
 dotnet add Bootstrapper/API/API.csproj package Serilog.AspNetCore
 dotnet add Bootstrapper/API/API.csproj package Serilog.Sinks.Seq
