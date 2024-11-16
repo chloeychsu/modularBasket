@@ -38,3 +38,16 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+  
+  identity:
+    container_name: identity
+    environment:
+      - KEYCLOAK_DAMIN=admin    
+      - KEYCLOAK_DAMIN_PASSWORD=admin
+    restart: always
+    ports:
+      - "9090:8080"
+    command:
+      - start-dev
+
+
