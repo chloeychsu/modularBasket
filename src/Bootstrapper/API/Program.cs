@@ -10,7 +10,9 @@ builder.Services.AddMediatRWithAsssemblies(catalogAssembly,basketAssembly);
 
 builder.Services.AddStackExchangeRedisCache(opt=>{
     opt.Configuration = builder.Configuration.GetConnectionString("Redis");
-});  
+});
+
+builder.Services.AddMassTransitWithAssemblies(catalogAssembly,basketAssembly);
 
 builder.Services
     .AddCatalogModule(builder.Configuration)
