@@ -5,7 +5,7 @@ public record OrderDto(
     Guid CustomerId,
     string OrderName,
     AddressDto ShippingAddress,
-    AddressDto Billingaddress,
+    AddressDto BillingAddress,
     PaymentDto Payment,
     List<OrderItemDto> Items
 );

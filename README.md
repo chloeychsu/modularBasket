@@ -39,6 +39,7 @@ dotnet add Modules/Basket/Basket/Basket.csproj reference Modules/Catalog/Catalog
 dotnet add Modules/Basket/Basket/Basket.csproj reference Shared/Shared.Messaging/Shared.Messaging.csproj
 
 dotnet add Modules/Ordering/Ordering/Ordering.csproj reference Shared/Shared/Shared.csproj
+dotnet add Modules/Ordering/Ordering/Ordering.csproj reference Shared/Shared.Messaging/Shared.Messaging.csproj
 
 dotnet add Shared/Shared/Shared.csproj reference Shared/Shared.Contracts/Shared.Contracts.csproj
 dotnet add Modules/Catalog/Catalog.Contracts/Catalog.Contracts.csproj reference Shared/Shared.Contracts/Shared.Contracts.csproj
@@ -182,7 +183,7 @@ dotnet ef database update --context OrderingDbContext -p Modules/Ordering/Orderi
 ## Identity Database
 ```shell
 # 登入
-psql -U postgres -d basketdb -h localhost -p 5432
+psql -U postgres -d basketdb  -h localhost -p 5432
 # 建 schema : https://www.cnblogs.com/weaming/p/postgre-basic.html
 CREATE SCHEMA identity;
 GRANT ALL ON SCHEMA identity TO postgres;
