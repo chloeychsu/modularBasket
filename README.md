@@ -80,7 +80,7 @@ dotnet add Shared/Shared.Messaging/Shared.Messaging.csproj package MassTransit
 
 // API package
 dotnet add Bootstrapper/API/API.csproj package Microsoft.EntityFrameworkCore.Design
-
+dotnet add Bootstrapper/API/API.csproj package Keycloak.AuthServices.Authentication
 
 ```
 
@@ -172,10 +172,17 @@ dotnet ef database update -p Modules/Catalog/Catalog -s Bootstrapper/API
 dotnet ef migrations add InitialCreate --context BasketDbContext -o Data/Migrations -p Modules/Basket/Basket -s Bootstrapper/API
 dotnet ef database update --context BasketDbContext -p Modules/Basket/Basket -s Bootstrapper/API
 
+// Identity pssql 
+
+// 登入
+psql -U postgres -d basketdb -h localhost -p 5432
+// 建 schema : https://www.cnblogs.com/weaming/p/postgre-basic.html
+CREATE SCHEMA identity;
+GRANT ALL ON SCHEMA identity TO postgres;
 
 ```
 
-## Cache
+
  
 
 # Class 
@@ -274,3 +281,5 @@ Product*--ProductChangedEvent : Composition
 ![MediatR LifeCycle](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*JR5ta7GSLawEWZSWoW5FHw.png)
 
 
+# Keycloak
+https://nikiforovall.github.io/aspnetcore/dotnet/2022/08/24/dotnet-keycloak-auth.html
