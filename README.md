@@ -100,6 +100,7 @@ graph LR
     a1[ASP.NET <br>Core <br>API]
     end
     subgraph Library
+
     Catalog
     Basket
     Ordering
@@ -172,14 +173,19 @@ dotnet ef database update -p Modules/Catalog/Catalog -s Bootstrapper/API
 dotnet ef migrations add InitialCreate --context BasketDbContext -o Data/Migrations -p Modules/Basket/Basket -s Bootstrapper/API
 dotnet ef database update --context BasketDbContext -p Modules/Basket/Basket -s Bootstrapper/API
 
-// Identity pssql 
+// Ordering
+dotnet ef migrations add InitialCreate --context OrderingDbContext -o Data/Migrations -p Modules/Ordering/Ordering -s Bootstrapper/API
+dotnet ef database update --context OrderingDbContext -p Modules/Ordering/Ordering -s Bootstrapper/API
 
-// 登入
+```
+
+## Identity Database
+```shell
+# 登入
 psql -U postgres -d basketdb -h localhost -p 5432
-// 建 schema : https://www.cnblogs.com/weaming/p/postgre-basic.html
+# 建 schema : https://www.cnblogs.com/weaming/p/postgre-basic.html
 CREATE SCHEMA identity;
 GRANT ALL ON SCHEMA identity TO postgres;
-
 ```
 
 
