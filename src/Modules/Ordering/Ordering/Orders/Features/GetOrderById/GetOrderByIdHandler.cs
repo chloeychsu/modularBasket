@@ -1,7 +1,4 @@
-﻿
-using Mapster;
-
-namespace Ordering.Orders.Features.GetOrderById;
+﻿namespace Ordering.Orders.Features.GetOrderById;
 
 public record GetOrderByIdQuery(Guid Id):IQuery<GetOrderByIdResult>;
 public record GetOrderByIdResult(OrderDto Order);

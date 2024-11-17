@@ -28,6 +28,7 @@ public class CreateOrderHandler(OrderingDbContext context) : ICommandHandler<Cre
         var shippingAddress = Address.Of(orderDto.ShippingAddress.FirstName, orderDto.ShippingAddress.LastName, orderDto.ShippingAddress.EmailAddress, orderDto.ShippingAddress.AddressLine, orderDto.ShippingAddress.Country, orderDto.ShippingAddress.State, orderDto.ShippingAddress.ZipCode);
         var billingAddress = Address.Of(orderDto.Billingaddress.FirstName, orderDto.Billingaddress.LastName, orderDto.Billingaddress.EmailAddress, orderDto.Billingaddress.AddressLine, orderDto.Billingaddress.Country, orderDto.Billingaddress.State, orderDto.Billingaddress.ZipCode);
 
+
         var newOrder = Order.Create(
             id: Guid.NewGuid(),
             customerId: orderDto.CustomerId,

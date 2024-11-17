@@ -1,5 +1,4 @@
-﻿using Mapster;
-using Shared.Pagination;
+﻿using Shared.Pagination;
 
 namespace Ordering.Orders.Features.GetOrders;
 

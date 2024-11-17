@@ -16,6 +16,7 @@ public class Order : Aggregate<Guid>
         {
             Id = id,
             CustomerId = customerId,
+            OrderName = orderName,
             ShippingAddress = shippingAddress,
             BillingAddress = billingAddress,
             Payment = payment

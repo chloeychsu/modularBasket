@@ -11,3 +11,8 @@ global using Ordering.Data;
 global using Ordering.Orders.Dtos;
 global using Shared.Contracts.CQRS;
 global using Ordering.Orders.Exceptions;
+global using Carter;
+global using Mapster;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Routing;
