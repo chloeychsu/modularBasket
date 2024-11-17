@@ -10,14 +10,14 @@ public class Order : Aggregate<Guid>
     public Address BillingAddress { get; private set; } = default!;
     public Payment Payment { get; private set; } = default!;
     public decimal TotalPrice => Items.Sum(x => x.Price * x.Quantity);
-    public static Order Create(Guid id, Guid customerId, string orderName, Address shippingAddress, Address BillingAddress, Payment payment)
+    public static Order Create(Guid id, Guid customerId, string orderName, Address shippingAddress, Address billingAddress, Payment payment)
     {
         var order = new Order
         {
             Id = id,
             CustomerId = customerId,
             ShippingAddress = shippingAddress,
-            BillingAddress = BillingAddress,
+            BillingAddress = billingAddress,
             Payment = payment
         };
         order.AddDomainEvent(new OrderCreatedEvent(order));
