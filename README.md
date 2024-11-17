@@ -182,7 +182,7 @@ dotnet ef database update --context OrderingDbContext -p Modules/Ordering/Orderi
 ## Identity Database
 ```shell
 # 登入
-psql -U postgres -d basketdb -h localhost -p 5432
+psql -U postgres -d basketdb  -h localhost -p 5432
 # 建 schema : https://www.cnblogs.com/weaming/p/postgre-basic.html
 CREATE SCHEMA identity;
 GRANT ALL ON SCHEMA identity TO postgres;
