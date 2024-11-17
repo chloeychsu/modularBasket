@@ -39,6 +39,7 @@ dotnet add Modules/Basket/Basket/Basket.csproj reference Modules/Catalog/Catalog
 dotnet add Modules/Basket/Basket/Basket.csproj reference Shared/Shared.Messaging/Shared.Messaging.csproj
 
 dotnet add Modules/Ordering/Ordering/Ordering.csproj reference Shared/Shared/Shared.csproj
+dotnet add Modules/Ordering/Ordering/Ordering.csproj reference Shared/Shared.Messaging/Shared.Messaging.csproj
 
 dotnet add Shared/Shared/Shared.csproj reference Shared/Shared.Contracts/Shared.Contracts.csproj
 dotnet add Modules/Catalog/Catalog.Contracts/Catalog.Contracts.csproj reference Shared/Shared.Contracts/Shared.Contracts.csproj

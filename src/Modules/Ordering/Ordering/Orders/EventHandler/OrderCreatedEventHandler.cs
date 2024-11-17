@@ -1,5 +1,5 @@
 ﻿
-namespace Ordering.Orders.EventHancler;
+namespace Ordering.Orders.EventHandler;
 
 public class OrderCreatedEventHandler(ILogger<OrderCreatedEventHandler> logger) : INotificationHandler<OrderCreatedEvent>
 {
