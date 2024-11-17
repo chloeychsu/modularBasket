@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Basket;
+namespace Basket.Data.Configurations;
 
 public class ShoppingCartConfiguration : IEntityTypeConfiguration<ShoppingCart>
 {
